@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+
+    <!-- header sevtion for the expense tracker  -->
+    <header
+      id="header"
+      class="bg-gradient-to-r from-purple-500 to-pink-500 p-4 text-center"
+    >
+      <h1 class="text-3xl text-white font-semibold">Expense Tracker</h1>
+    </header>
+
+    <!-- Separate div for displaying the budget and expense  -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 gap-4">
+      <h2 class="text-xl font-semibold">
+        Total Budget: <span id="total-budget">0</span>
+      </h2>
+      <h2 class="text-xl font-semibold">
+        Current Balance: <span id="current-balance">0</span>
+      </h2>
+      <h2 class="text-xl font-semibold">
+        Total Expense: <span id="total-expense">0</span>
+      </h2>
+      <button
+        class="bg-gradient-to-r from-purple-400 to-pink-400 text-white p-2 font-semibold rounded-lg w-28 max-w-xs hover:shadow-lg mx-auto"
+        onclick="deletebudget()"
+      >
+        Restart
+      </button>
+    </div>
+
+    <!-- Section for entering the expence and budget for the expense tracker  -->
+    <section>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 px-4">
+        <!-- Budget and Balance Section -->
+        <div
+          id="income"
+          class="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-red-500 to-orange-300"
+        >
+          <h2 class="text-lg font-semibold mt-2 text-white">
+            Select the type of entry :
+          </h2>
+          <select
+            id="category"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          >
+            <option value="Travel">Income</option>
+            <option value="Skills">Expense</option>
+          </select>
+
+          <h2 class="text-lg font-semibold mt-2 text-white">Add Income :</h2>
+          <input
+            type="text"
+            id="income-type"
+            placeholder="Income Type"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+          />
+          <input
+            type="number"
+            id="income-amount"
+            placeholder="Income Amount"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+          />
+          <input
+            type="date"
+            id="income-date"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+          />
+          <button
+            class="bg-gradient-to-r from-purple-400 to-pink-400 text-white p-2 font-semibold rounded-lg mt-2 hover:shadow-lg"
+            onclick="addIncome()"
+          >
+            Add Income
+          </button>
+
+          <h2 class="text-lg font-semibold mt-4 text-white">Add Expenses:</h2>
+          <input
+            type="text"
+            id="expense-type"
+            placeholder="Expense Category"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+          />
+          <input
+            type="number"
+            id="expense-amount"
+            placeholder="Amount spent"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+          />
+          <input
+            type="date"
+            id="expense-date"
+            class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:shadow-lg"
+            placeholder="Select Date"
+          />
+          <button
+            class="bg-gradient-to-r from-purple-400 to-pink-400 text-white p-2 font-semibold rounded-lg mt-2 hover:shadow-lg"
+            onclick="addexpense()"
+          >
+            Add Expense
+          </button>
+        </div>
+
+        <div
+          class="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-red-500 to-orange-300 text-white"
+        >
+          <h2 class="text-lg font-semibold mb-2">Expenses List</h2>
+          <div>
+            <label
+              ><input
+                type="radio"
+                name="filter"
+                value="all"
+                onclick="setFilter('all')"
+                checked
+              />
+              All</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="filter"
+                value="income"
+                onclick="setFilter('income')"
+              />
+              Income</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="filter"
+                value="expense"
+                onclick="setFilter('expense')"
+              />
+              Expense</label
+            >
+          </div>
+          <div
+            id="expenses-items"
+            class="flex flex-col space-y-2 text-lg"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Adding the script file to the html file  -->
+    <script src="app.js"></script>
+  </body>
+</html>
